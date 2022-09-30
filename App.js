@@ -8,7 +8,7 @@ export default function app() {
  return (
    <View style={styles.container}>
     <Game></Game>
-    <Cronometro></Cronometro>
+  
    </View>
   );
 }

@@ -38,6 +38,10 @@ export default function gameStart() {
     setBoard(newBoard);
   };
 
+  const win = () =>{
+    alert("Parabéns, Você VENCEU!")
+  }
+
   const handleClick = (index, card) => {
     if (board[index].status === 0 && canClick) {
       turnCard(1, index);
@@ -51,15 +55,15 @@ export default function gameStart() {
           console.log("match");
           duplas +=2;
           if(duplas == cartas)
-          alert("você venceu!")
+          setTimeout(function() {win(),1500}) 
         } else {
           console.log("not match");
           setTimeout(function () {
             turnCard(0, index), canClick = true;
-          }, 1000);
+          }, 750);
           setTimeout(function () {
             turnCard(0, openIndex);
-          }, 1000);
+          }, 750);
         }
         c1 = "vazio";
       }
