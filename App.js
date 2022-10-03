@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Game from './src/telas/game.js';
-import Start from './src/telas/start.js';
-import Cronometro from './src/components/cronometro'
+/* import Start from './src/telas/start.js';
+import Cronometro from './src/components/cronometro' */
 
 export default function app() {
  return (

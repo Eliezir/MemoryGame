@@ -2,18 +2,40 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 
+
 let c1 = "vazio";
 let openIndex;
-let cartas = 8;
+let cartas = 12;
 let canClick = true;
 let duplas = 0;
 
+/* var Sound = require('react-native-sound');
+Sound.setCategory('Playback');
+
+
+ding.play(success => {
+  if (success) {
+    console.log('successfully finished playing');
+  } else {
+    console.log('playback failed due to audio decoding errors');
+  }
+});
+ */
+
+
 /* const cardBack = require("../../cardback.jpg"); */
-const cardBack =require('../imagens/cardBack.jpg')
+const cardBack ='https://i.pinimg.com/736x/8e/12/d0/8e12d05811d96e31815dd54050b387e8.jpg'
+const ravenclaw = 'https://i.pinimg.com/564x/36/3a/4c/363a4c6af050cf36386960d3df9043dd.jpg'
+const slytherin = 'https://i.pinimg.com/originals/0f/aa/8c/0faa8c947a84e9238c75fde8b61f00f4.jpg'
+const hufflepuff= 'https://i.pinimg.com/564x/35/78/b9/3578b94ba69fc20f6cc9204135f1f4a7.jpg'
+const gryffindor = 'https://i.pinimg.com/originals/93/9d/c2/939dc23604f7d5cd7dae86d5774c946c.jpg' 
+const teste = 'https://i.pinimg.com/564x/55/dd/55/55dd55ac1b21e123b8903e671db2a8a4.jpg'
+const plataform = 'https://i.pinimg.com/564x/a2/f1/97/a2f197689a1461775d4f1c530dc5381e.jpg'
+/* const cardBack =require('../imagens/cardBack.jpg')
 const ravenclaw = require('../imagens/Ravenclaw.png')
 const slytherin = require('../imagens/Slytherin.jpg')
 const hufflepuff= require('../imagens/lufa.png')
-const gryffindor = require('../imagens/Gryffindor.jpg')
+const gryffindor = require('../imagens/Gryffindor.jpg') */
 /* const teste = 'https://i.pinimg.com/564x/55/dd/55/55dd55ac1b21e123b8903e671db2a8a4.jpg'
 const plataform = 'https://i.pinimg.com/564x/a2/f1/97/a2f197689a1461775d4f1c530dc5381e.jpg' */
 
@@ -26,6 +48,10 @@ const cores = [
   slytherin,
   hufflepuff,
   gryffindor,
+  teste,
+  teste,
+  plataform,
+  plataform,
 ];
 var b = [];
 for (var x = 0; x < cartas; x++) {
@@ -76,13 +102,12 @@ export default function gameStart() {
       }
     }
   };
-
   return (
     <View style={styles.container}>
       {board.map((card, index) => (
         <TouchableOpacity key={card.id} onPress={() => handleClick(index, card)}>
           <View style={[styles.card,/* {backgroundColor: card.status === 0 ? "transparent" : card.color,} */]}>
-          <Image style={[styles.img,{}]}source={card.status === 0 ? cardBack : card.color}></Image>
+          <Image style={[styles.img,{}]}source={{uri:card.status === 0 ? cardBack : card.color}}></Image>
           </View>
        
         </TouchableOpacity>
@@ -110,6 +135,7 @@ const styles = StyleSheet.create({
   card: {
     margin: 10, 
     borderRadius: 10,
-    border:'2px solid white'
+    borderWidth: 2,
+    borderColor:"#FFFFFF"
   },
 });
