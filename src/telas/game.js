@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
 import {dificuldade} from "./start"
+import { Audio } from 'expo-av';
 
 
 
@@ -9,31 +10,6 @@ let c1 = "vazio";
 let openIndex;
 let canClick = true;
 let duplas = 0;
-
-
-/* var Sound = require('react-native-sound');
-Sound.setCategory('Playback');
-
-
-ding.play(success => {
-  if (success) {
-    console.log('successfully finished playing');
-  } else {
-    console.log('playback failed due to audio decoding errors');
-  }
-});
- */
-
-
-/* const cardBack = require("../../cardback.jpg");
- const cardBack =require('../imagens/cardBack.jpg')
-const ravenclaw = require('../imagens/Ravenclaw.png')
-const slytherin = require('../imagens/Slytherin.jpg')
-const hufflepuff= require('../imagens/lufa.png')
-const gryffindor = require('../imagens/Gryffindor.jpg') */
-/* const teste = 'https://i.pinimg.com/564x/55/dd/55/55dd55ac1b21e123b8903e671db2a8a4.jpg'
-const plataform = 'https://i.pinimg.com/564x/a2/f1/97/a2f197689a1461775d4f1c530dc5381e.jpg' */
-
 
 const cardBack ='https://i.pinimg.com/736x/8e/12/d0/8e12d05811d96e31815dd54050b387e8.jpg'
 const ravenclaw = 'https://i.pinimg.com/564x/36/3a/4c/363a4c6af050cf36386960d3df9043dd.jpg'
@@ -84,6 +60,7 @@ for (var x = 0; x < cartas; x++) {
   };
 
   const handleClick = (index, card) => {  
+
     if (board[index].status === 'virado' && canClick) {
       turnCard('ativo', index);
       if (c1 == "vazio") {
@@ -112,6 +89,27 @@ for (var x = 0; x < cartas; x++) {
       }
     }
   };
+/*   const [sound, setSound] = useState();
+
+  async function playSound() {
+    const { sound } = await Audio.Sound.createAsync( require('../../assets/Hp.mp3')
+    );
+    setSound(sound);
+    sound.setNumberOfLoops(-1).play()
+    await sound.playAsync();
+  }
+
+  useEffect(function (){
+    return sound
+      ? () => {
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
+
+
+  playSound() */
   return (
     <View style={styles.container}>
       {board.map((card, index) => (
@@ -138,7 +136,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   img: {
-    height: 125,
+    height: 100,
     width: 100,
     borderRadius: 10,
   },

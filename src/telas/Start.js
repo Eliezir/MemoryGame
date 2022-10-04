@@ -9,6 +9,7 @@ function nivel(nivel){
 }
 export default function Start() {
 
+
 const navigation = useNavigation();
  return (
    <View style={styles.container}>
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     padding:10,
     borderRadius:15,
     backgroundColor:'#6320ee',
-    textAlign:'center',
+    alignItems: 'center',
     margin:15,
   },
   textBtn:{
