@@ -16,18 +16,18 @@ var cronometroIncio = true;
 var jogando = true;
 
 
-const cardBack ='https://i.pinimg.com/736x/8e/12/d0/8e12d05811d96e31815dd54050b387e8.jpg'
-const ravenclaw = 'https://i.pinimg.com/564x/36/3a/4c/363a4c6af050cf36386960d3df9043dd.jpg'
-const slytherin = 'https://i.pinimg.com/originals/0f/aa/8c/0faa8c947a84e9238c75fde8b61f00f4.jpg'
-const hufflepuff= 'https://i.pinimg.com/564x/35/78/b9/3578b94ba69fc20f6cc9204135f1f4a7.jpg'
-const gryffindor = 'https://i.pinimg.com/originals/93/9d/c2/939dc23604f7d5cd7dae86d5774c946c.jpg' 
-const dHallows = 'https://i.pinimg.com/564x/55/dd/55/55dd55ac1b21e123b8903e671db2a8a4.jpg'
-const plataform = 'https://i.pinimg.com/564x/a2/f1/97/a2f197689a1461775d4f1c530dc5381e.jpg'
-const hogwarts = "https://mfiles.alphacoders.com/891/891687.jpg"
-const goldenSnitch = 'https://i.pinimg.com/originals/3d/78/a2/3d78a253a23fb598cb97eacda2000f23.jpg'
-const selectionHat = "https://wallpaper.dog/large/10999069.jpg"
+const cardBack = require('../imagens/cardBack.jpg')
+const ravenclaw = require('../imagens/ravenclaw.jpg')
+const slytherin = require('../imagens/slytherin.jpg')
+const hufflepuff= require('../imagens/lufa.jpg')
+const gryffindor = require('../imagens/gryffindor.jpg')
+const dHallows = require('../imagens/dHallows.jpg')
+const plataform =  require('../imagens/plataform.jpg')
+const hogwarts =  require('../imagens/hogwarts.jpg')
+const goldenSnitch = require('../imagens/goldenSnitch.jpg')
+const selectionLetter = require('../imagens/selectionLetter.jpg')
 
-const carta = [ ravenclaw,slytherin,hufflepuff,gryffindor,plataform,dHallows,hogwarts,goldenSnitch,selectionHat]
+const carta = [ ravenclaw,slytherin,hufflepuff,gryffindor,plataform,dHallows,hogwarts,goldenSnitch,selectionLetter]
 const cores = [];
 
 
