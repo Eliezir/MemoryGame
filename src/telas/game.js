@@ -10,6 +10,8 @@ let c1 = "vazio";
 let openIndex;
 let canClick = true;
 let duplas = 0;
+var music = 'play'
+
 
 const cardBack ='https://i.pinimg.com/736x/8e/12/d0/8e12d05811d96e31815dd54050b387e8.jpg'
 const ravenclaw = 'https://i.pinimg.com/564x/36/3a/4c/363a4c6af050cf36386960d3df9043dd.jpg'
@@ -60,7 +62,7 @@ for (var x = 0; x < cartas; x++) {
   };
 
   const handleClick = (index, card) => {  
-
+    playSound()
     if (board[index].status === 'virado' && canClick) {
       turnCard('ativo', index);
       if (c1 == "vazio") {
@@ -89,19 +91,22 @@ for (var x = 0; x < cartas; x++) {
       }
     }
   };
-/*   const [sound, setSound] = useState();
+  const [sound, setSound] = useState();
 
   async function playSound() {
-    const { sound } = await Audio.Sound.createAsync( require('../../assets/Hp.mp3')
-    );
+    if(music == 'play'){
+    const { sound } = await Audio.Sound.createAsync( require('../../assets/Hp.mp3'));
     setSound(sound);
-    sound.setNumberOfLoops(-1).play()
+     sound.setIsLoopingAsync(true)
     await sound.playAsync();
+    music = 'playing'
   }
+}
 
-  useEffect(function (){
+  useEffect(() => {
     return sound
       ? () => {
+          
           sound.unloadAsync();
         }
       : undefined;
@@ -109,7 +114,7 @@ for (var x = 0; x < cartas; x++) {
 
 
 
-  playSound() */
+ 
   return (
     <View style={styles.container}>
       {board.map((card, index) => (
