@@ -1,8 +1,9 @@
-import { StatusBar } from "expo-status-bar";
+
 import { useState,useEffect } from "react";
-import { StyleSheet, TouchableOpacity, View, Image } from "react-native";
+import { StyleSheet, TouchableOpacity, View, Image, StatusBar } from "react-native";
 import {dificuldade} from "./start"
 import { Audio } from 'expo-av';
+import Cronometro, {iniciar} from '../components/cronometro'
 
 
 
@@ -11,6 +12,8 @@ let openIndex;
 let canClick = true;
 let duplas = 0;
 var music = 'play'
+var cronometroIncio = true;
+var jogando = true;
 
 
 const cardBack ='https://i.pinimg.com/736x/8e/12/d0/8e12d05811d96e31815dd54050b387e8.jpg'
@@ -63,6 +66,7 @@ for (var x = 0; x < cartas; x++) {
 
   const handleClick = (index, card) => {  
     playSound()
+    iniciar('start');
     if (board[index].status === 'virado' && canClick) {
       turnCard('ativo', index);
       if (c1 == "vazio") {
@@ -72,14 +76,13 @@ for (var x = 0; x < cartas; x++) {
         canClick = false;
         if (c1.color === card.color) {
           canClick = true;
-          console.log("match");
           duplas += 2;
           if (duplas == cartas)
             setTimeout(function () {
               win(), 1500;
+              iniciar(true);
             });
         } else {
-          console.log("not match");
           setTimeout(function () {
             turnCard('virado', index), (canClick = true);
           }, 750);
@@ -91,6 +94,8 @@ for (var x = 0; x < cartas; x++) {
       }
     }
   };
+
+
   const [sound, setSound] = useState();
 
   async function playSound() {
@@ -113,10 +118,44 @@ for (var x = 0; x < cartas; x++) {
   }, [sound]);
 
 
+  let timer = null;
+  let segundos = 0;
+  let minutos = 0;
+  const [numero, setNumero] = useState('00:00');
+  function iniciar(vitoria){
+    if(cronometroIncio === true){
+      cronometroIncio = false
+      timer = setInterval(()=> {
+        if(jogando == true){
+        segundos++;
+        if(segundos == 60){
+          segundos = 0;
+          minutos++;
+        }
+        if(minutos == 60){
+          minutos = 0;
+          horas++
+        }
+  
+        let format = (minutos<10? '0' + minutos: minutos) 
+        + ':' + (segundos<10? '0' + segundos: segundos);
+  
+        setNumero(format);}
+      }, 1000);
+  
+    }
+    else if(vitoria === true){
+       clearInterval(timer);
+       jogando=false;
+    }
+  }
 
- 
+
   return (
     <View style={styles.container}>
+       <StatusBar/>
+      <Cronometro numero={numero} ></Cronometro>
+      <View style={styles.board}>
       {board.map((card, index) => (
         <TouchableOpacity key={card.id} onPress={() => handleClick(index, card)}>
           <View style={[styles.card,/* {backgroundColor: card.status === 0 ? "transparent" : card.color,} */]}>
@@ -125,19 +164,23 @@ for (var x = 0; x < cartas; x++) {
        
         </TouchableOpacity>
       ))}
-      <StatusBar style="auto" />
+      </View>
+     
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container:{
     flex: 1,
+    backgroundColor: "black",
+  },
+  board: {
+
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    backgroundColor: "black",
-    alignContent: "center",
+    alignContent: "flex-start",
     justifyContent: "center",
   },
   img: {
